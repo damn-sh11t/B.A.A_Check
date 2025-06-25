@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.A.A Check - Учет БАДов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #adf1ff;
+            --secondary-color: #7ae0ff;
+            --dark-color: #006d8b;
+            --text-color: #333;
+            --light-color: #f0f9ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #004d66;
+        }
+        
+        .hero {
+            background-color: var(--primary-color);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .main-content {
+            padding: 60px 0;
+        }
+        
+        .app-presentation {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 60px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .app-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .app-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .app-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .app-info h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .features {
+            margin-bottom: 30px;
+        }
+        
+        .features li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .features li:before {
+            content: "✓";
+            color: var(--dark-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--dark-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #004d66;
+            transform: translateY(-2px);
+        }
+        
+        .btn-mobile {
+            background-color: #34a853;
+        }
+        
+        .btn-desktop {
+            background-color: #4285f4;
+        }
+        
+        .apps-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .app-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .app-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .qr-code {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .qr-code img {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+        
+        .qr-code p {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .developer-info {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .developer-info h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+            .footer-links a {
+                color: deepskyblue;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: deepskyblue;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .app-presentation {
+                flex-direction: column;
+            }
+            
+            .app-info, .app-image {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">B.A.A Check</div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">О приложении</a></li>
+                        <li><a href="#mobile">Приложения</a></li>
+                        <li><a href="#developer">Разработчик</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Учет БАДов - просто и удобно</h1>
+            <p>B.A.A Check - ваш надежный помощник в учете биологически активных добавок.</p>
+        </div>
+    </section>
+    
+    <section class="main-content">
+        <div class="container">
+            <div class="app-presentation" id="about">
+                <div class="app-info">
+                    <h2>B.A.A Check</h2>
+
+                    <p>Разработанное приложение для учета БАДов с широким функционалом и удобным интерфейсом.</p>
+                    
+                    <ul class="features">
+                        <li>Добавление, редактирование и удаление любой записи о БАДе</li>
+                        <li>Удобный поиск по введенному значению</li>
+                        <li>Автоматическая синхронизация с виртуальной базой данных</li>
+                        <li>Безошибочная работа обоих приложений</li>
+                    </ul>
+                </div>
+                
+                <div class="app-image">
+                    <img src="https://images.genius.com/6a12ba2625d5dd58c0103572b446f0c2.872x872x1.png" >
+                </div>
+            </div>
+            
+            <div class="apps-section">
+                <div class="app-card" id="mobile">
+                    <h3>Мобильное приложение</h3>
+                    <p>B.A.A Check - это удобное приложение для учета БАДов прямо в вашем телефоне. Приложение доступно для устройств на Android 7.0 и выше.</p>
+                    <p>Основные преимущества:</p>
+                    <ul class="features">
+                        <li>Удобный интерфейс, оптимизированный для мобильных устройств</li>
+                        <li>Весь функционал для комфортной работы с таблицей</li>
+                        <li>Полная синхронизация с каждым изменением в декстопном приложении</li>
+                        <li>Оптимально подобранные столбцы таблицы для заполнения самой важной информацией</li>
+                    </ul>
+                    
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://example.com/download-app" alt="QR код для скачивания">
+                        <p>Отсканируйте QR-код для скачивания приложения</p>
+                    </div>
+                    
+                    <a href="#" class="btn btn-mobile">Скачать для Android</a>
+                </div>
+                
+                <div class="app-card" id="desktop">
+                    <h3>Десктопное приложение</h3>
+                    <p>Учёт БАДов - удобное приложение для учета БАДов на вашем компьютере. Доступно для Windows 10 и 11.</p>
+                    <p>Основные преимущества:</p>
+                    <ul class="features">
+                        <li>Основной функционал для комфортного использования учетом</li>
+                        <li>Кофортная прокрутка для больших объемов данных</li>
+                        <li>Полная синхронизация с любым изменением в мобильном приложении</li>
+                    </ul>
+                    <a href="#" class="btn btn-desktop">Скачать для Windows</a>
+                </div>
+            </div>
+            
+            <div class="developer-info" id="developer">
+                <h2>О разработчике</h2>
+                <div class="contact-info">
+                    <p><strong>Группа:</strong> ИС-931</p>
+                    <p><strong>Имя:</strong> Тимофей</p>
+                    <p><strong>Фамилия:</strong> Плешивцев</p>
+                    <p><strong>Email:</strong> <a href="mailto:timofei.plv@gmail.com">timofei.plv@gmail.com</a></p>
+                    <p><strong>Телефон:</strong> <a href="tel:+79530620995">+7 953 062 0995</a></p>
+                    <div class="social-links">
+                        <a href="https://vk.com/damn_sh1t" target="_blank"><i class="fab fa-vk"></i></a>
+                        <a href="https://t.me/damn_sh11t" target="_blank"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 B.A.A Check. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
